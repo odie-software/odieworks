@@ -68,7 +68,11 @@ class Recorder extends Service {
         const file = `${this.#screenshots}/${now()}.png`
         Utils.ensureDirectory(this.#screenshots)
 
-        await bash(`grimblast --freeze save area ${file}`)
+        let grimblast = await bash(`grimblast --freeze save area ${file}`)
+        
+        if (!grimblast)
+            return
+
         bash(`wl-copy < ${file}`)
 
         Utils.notify({
