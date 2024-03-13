@@ -69,7 +69,7 @@ class Recorder extends Service {
         Utils.ensureDirectory(this.#screenshots)
 
         await bash(`grimblast --freeze save area ${file}`)
-        await bash(`wl-copy < ${file}`)
+        bash(`wl-copy < ${file}`)
 
         Utils.notify({
             image: file,
