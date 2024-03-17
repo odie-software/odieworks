@@ -4,6 +4,7 @@ import icons, { substitutes } from "./icons"
 import Gtk from "gi://Gtk?version=3.0"
 import Gdk from "gi://Gdk"
 import GLib from "gi://GLib?version=2.0"
+import Gio from 'gi://Gio';
 
 /**
   * @returns substitute icon || name || fallback icon
@@ -19,7 +20,7 @@ export function icon(name: string | null, fallback = icons.missing) {
     if (Utils.lookUpIcon(icon))
         return icon
 
-    print(`no icon substitute "${icon}" for "${name}", fallback: "${fallback}"`)
+    // print(`no icon substitute "${icon}" for "${name}", fallback: "${fallback}"`)
     return fallback
 }
 
@@ -104,4 +105,28 @@ export function createSurfaceFromWidget(widget: Gtk.Widget) {
     cr.fill()
     widget.draw(cr)
     return surface
+}
+
+/**
+ * list files in directory
+ */
+export async function listDir(path: string) {
+    const directory = Gio.File.new_for_path(path);
+    
+    let files = []
+    const iter = await directory.enumerate_children('standard::*',
+        Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
+
+    while (true) {
+        const fileInfo = await iter.next_file(null);
+
+        if (!fileInfo)
+            break;
+
+        files.push(fileInfo.get_name())
+        print(fileInfo.get_name());
+            
+    }
+
+    return files
 }
