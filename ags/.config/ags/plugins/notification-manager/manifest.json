@@ -1,6 +1,7 @@
 {
     "name": "Notification manager",
     "description": "Notification categorization system",
+    "author": "odie-software",
     "version": "1.0.0",
     "ags": "1.8.0"
 }
