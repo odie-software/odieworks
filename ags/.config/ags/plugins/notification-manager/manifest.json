@@ -1,0 +1,6 @@
+{
+    "name": "Notification manager",
+    "description": "Notification categorization system",
+    "version": "1.0.0",
+    "ags": "1.8.0"
+}
