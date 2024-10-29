@@ -13,7 +13,7 @@ function animate(...setters: Array<() => void>) {
 
 export async function matugen(
     type: "image" | "color" = "image",
-    arg = options.wallpaper.value,
+    arg = decodeURIComponent(options.wallpaper.value),
 ) {
     if (!options.autotheme.value || !dependencies("matugen"))
         return

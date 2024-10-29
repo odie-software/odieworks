@@ -19,7 +19,12 @@ class Recorder extends Service {
 
     recording = false
     timer = 0
-
+    async toggle() {
+        if (this.recording)
+            await this.stop()
+        else
+            await this.start()
+    }
     async start() {
         if (!dependencies("slurp", "wf-recorder"))
             return
@@ -49,6 +54,9 @@ class Recorder extends Service {
         this.recording = false
         this.changed("recording")
         GLib.source_remove(this.#interval)
+
+
+        bash(`printf %s file://${this.#file} | wl-copy -t text/uri-list`)
 
         Utils.notify({
             iconName: icons.fallback.video,

@@ -1,13 +1,9 @@
-print('test')
-
-import { listDir } from "lib/utils"
+import { Plugin, Manifest } from "lib/plugin"
 import _manifest from './manifest.json'
+print(_manifest.name)
+export default class Test implements Plugin {
+    public manifest = _manifest
 
-export const manifest = _manifest;
-
-listDir('/home/')
-
-export default class Test {
     test() {
         print('test')
     }

@@ -1,0 +1,49 @@
+{
+    "windows": [
+        {
+            "id": "whatsapp",
+            "class": "com.rtosta.zapzap",
+            "launcher": "zapzap",
+            "keybind": "$mainMod,W"
+        },
+        {
+            "id": "music",
+            "class": "YouTube Music",
+            "launcher": "youtube-music",
+            "keybind": "$mainMod,M"
+        },
+        {
+            "id": "slack",
+            "class": "Slack",
+            "launcher": "slack",
+            "keybind": "$mainMod,S",
+            "pretoggle": "ags -r 'notificationManager.clearNotifications(`Slack`)'"
+        },
+        {
+            "id": "vikunja",
+            "class": "vikunja-desktop",
+            "launcher": "vikunja-desktop",
+            "keybind": "$mainMod,V"
+        },
+        {
+            "id": "term",
+            "class": "dropdown-term",
+            "launcher": "kitty --class dropdown-term",
+            "keybind": "$mainMod,T"
+        },
+        {
+            "id": "discord",
+            "class": "WebCord",
+            "launcher": "webcord",
+            "keybind": "$mainMod,D",
+            "pretoggle": "ags -r 'notificationManager.clearNotifications(`Discord`)'"
+        }
+    ],
+    "keybinds": {
+        "locking": [
+            "$mainMod,L",
+            "$mainMod,mouse:274"    
+        ]
+    },
+    "hyprland_config": "/home/hdev/.config/hypr/extra_keybinds.conf"
+}

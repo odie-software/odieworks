@@ -7,6 +7,27 @@ import GLib from "gi://GLib?version=2.0"
 import Gio from 'gi://Gio';
 
 /**
+ * @returns escaped string for shell usage
+ * @param val target string
+ */
+export function escapeStr(val: string) {
+    const symbols = ['[', ']', '(', ')']
+    val = decodeURIComponent(val)
+    let i = 0
+    let len = val.length
+    while (i < len) {
+        let char = val[i]
+        if (symbols.find(x => x == char)) {
+            val = val.slice(0, i) + "\\" + val.slice(i)
+            len += 1
+            i += 1
+        }
+        i += 1
+    }
+    console.log(val)
+}
+
+/**
   * @returns substitute icon || name || fallback icon
   */
 export function icon(name: string | null, fallback = icons.missing) {
@@ -42,6 +63,7 @@ export async function bash(strings: TemplateStringsArray | string, ...values: un
  * @returns execAsync(cmd)
  */
 export async function sh(cmd: string | string[]) {
+
     return Utils.execAsync(cmd).catch(err => {
         console.error(typeof cmd === "string" ? cmd : cmd.join(" "), err)
         return ""
@@ -123,9 +145,7 @@ export async function listDir(path: string) {
         if (!fileInfo)
             break;
 
-        files.push(fileInfo.get_name())
-        print(fileInfo.get_name());
-            
+        files.push(fileInfo.get_name())           
     }
 
     return files

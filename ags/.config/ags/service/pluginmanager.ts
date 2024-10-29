@@ -26,8 +26,8 @@ class PluginManager extends Service {
                 // TODO: check AGS version
                 
                 // Load plugin
-                let { manifest } = await import(plugin)
-                print(manifest.name)
+                let _plugin = await import(plugin)
+                print(_plugin.manifest)
             } catch(err) {
                 print(`Error loading plugin ${file}: ${err}`)
             }
