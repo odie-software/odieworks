@@ -6,6 +6,7 @@ const notifs = await Service.import("notifications")
 const { blacklist } = options.notifications
 
 export default function init() {
+    notifs.clear()
     const notify = notifs.constructor.prototype.Notify.bind(notifs)
     notifs.constructor.prototype.Notify = function(appName: string, ...rest: unknown[]) {
         if (blacklist.value.includes(appName))
