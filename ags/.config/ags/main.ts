@@ -15,6 +15,7 @@ import { setupQuickSettings } from "widget/quicksettings/QuickSettings"
 import { setupDateMenu } from "widget/datemenu/DateMenu"
 import { init } from "lib/init"
 import pluginmanager from "service/pluginmanager"
+import Audiomenu from "widget/audiomenu/Audiomenu"
 pluginmanager.getPlugins()
 
 App.config({
@@ -25,6 +26,7 @@ App.config({
     },
     closeWindowDelay: {
         "applauncher": options.transition.value,
+        "audiomenu": options.transition.value,
         "overview": options.transition.value,
         "quicksettings": options.transition.value,
         "datemenu": options.transition.value,
@@ -35,6 +37,7 @@ App.config({
         ...forMonitors(ScreenCorners),
         ...forMonitors(OSD),
         Applauncher(),
+        Audiomenu(),
         Overview(),
         PowerMenu(),
         Verification(),

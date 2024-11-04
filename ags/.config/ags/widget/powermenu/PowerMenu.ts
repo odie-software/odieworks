@@ -7,7 +7,10 @@ import type Gtk from "gi://Gtk?version=3.0"
 const { layout, labels } = options.powermenu
 
 const SysButton = (action: Action, label: string) => Widget.Button({
-    on_clicked: () => powermenu.action(action),
+    on_clicked: () => {
+        App.closeWindow("verification")
+        powermenu.action(action)
+    },
     child: Widget.Box({
         vertical: true,
         class_name: "system-button",
